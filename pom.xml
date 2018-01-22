@@ -236,13 +236,13 @@
         <allureReportVersion>2.3.4</allureReportVersion>
 
         <!-- Mule Snapshot Dependencies -->
-        <muleDslApiVersion>1.1.0-SNAPSHOT</muleDslApiVersion>
+        <muleDslApiVersion>1.2.0-SNAPSHOT</muleDslApiVersion>
         <muleExtensionsApiVersion>1.1.0-SNAPSHOT</muleExtensionsApiVersion>
-        <muleHttpPolicyApiVersion>1.1.0-SNAPSHOT</muleHttpPolicyApiVersion>
+        <muleHttpPolicyApiVersion>1.2.0-SNAPSHOT</muleHttpPolicyApiVersion>
         <muleMavenClientApi>1.1.0-SNAPSHOT</muleMavenClientApi>
         <muleMavenClientImpl>1.1.0-SNAPSHOT</muleMavenClientImpl>
         <muleMavenClientTest>1.1.0-SNAPSHOT</muleMavenClientTest>
-        <mulePolicyApiVersion>1.1.0-SNAPSHOT</mulePolicyApiVersion>
+        <mulePolicyApiVersion>1.2.0-SNAPSHOT</mulePolicyApiVersion>
         <muleApiVersion>1.1.0-SNAPSHOT</muleApiVersion>
         <muleMetadataModelVersion>1.1.0-SNAPSHOT</muleMetadataModelVersion>
         <metadataModelApiVersion>${muleMetadataModelVersion}</metadataModelApiVersion>
