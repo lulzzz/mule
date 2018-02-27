@@ -370,11 +370,22 @@ public class DefaultExpressionManagerTestCase extends AbstractMuleContextTestCas
   }
 
   @Test
-  public void parseInnerExpressions() throws Exception {
-    String expression = "This is a #[mel:#[mel:\"]\"]]";
-    assertThat(expressionManager.isValid(expression), is(true));
-    assertThat(expressionManager.parse(expression, testEvent(), TEST_CONNECTOR_LOCATION), is("This is a ]"));
+  public void parseExpressions() throws Exception {
+    parseExpression("#[mel:'simple expression']", "simple expression", true);
+    parseExpression("#[mel:'string unbalanced brackets ]']", "string unbalanced brackets ]", true);
+    parseExpression("#[mel:flowVars['var1']]", "var1Value", true);
+    parseExpression("#[mel:'Quoted #']", "Quoted #", true);
+    parseExpression("#[mel:#]", null, false);
+  }
 
-
+  private void parseExpression(String expression, String expectedResult, boolean isValid) throws Exception {
+    assertThat(expressionManager.isValid(expression), is(isValid));
+    if (isValid) {
+      assertThat(expressionManager.parse(expression,
+                                         getEventBuilder().addVariable("var1", "var1Value")
+                                             .message(Message.builder().payload(TypedValue.of(TEST_PAYLOAD)).build()).build(),
+                                         TEST_CONNECTOR_LOCATION),
+                 is(expectedResult));
+    }
   }
 }

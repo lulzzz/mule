@@ -251,12 +251,9 @@ public class TemplateParserTestCase extends AbstractMuleTestCase {
     assertTrue(tp.isValid("#[mel:]   #[mel:]"));
     assertTrue(tp.isValid("#[mel:]&[]"));
     assertTrue(tp.isValid("[]$[]#"));
-    assertTrue(tp.isValid("#[mel:#]#[mel:]"));
-    assertTrue(tp.isValid("#[mel:#[mel:]]#[mel:]"));
     assertTrue(tp.isValid("# []"));
     assertTrue(tp.isValid("#[mel:one[]two[]three[]four[]five[]six[]seven[]eight[]]"));
 
-    assertTrue(tp.isValid("#[mel:#[mel:]#[mel:]"));
     assertTrue(tp.isValid("#[mel:[][]"));
     assertTrue(tp.isValid("#[mel:'[']"));
 
@@ -266,7 +263,13 @@ public class TemplateParserTestCase extends AbstractMuleTestCase {
     assertTrue(tp.isValid("#[mel:foo:blah = '#[mel:foo]']"));
 
     assertTrue(tp.isValid("just a plain string with no actual expressions"));
+    assertTrue(tp.isValid("#[mel:'This is a hashtag #']"));
 
+    //Nested expressions should not be valid
+    assertFalse(tp.isValid("#[mel:#]#[mel:]"));
+    assertFalse(tp.isValid("#[mel:#[mel:#[mel:]]]"));
+    assertFalse(tp.isValid("#[mel:#[mel:]]#[mel:]"));
+    assertFalse(tp.isValid("#[mel:#[mel:]#[mel:]"));
     assertFalse(tp.isValid("#[mel:"));
   }
 
