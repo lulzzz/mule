@@ -59,23 +59,6 @@ public class InvokerMessageProcessorTestCase extends AbstractMuleContextTestCase
   }
 
   @Test
-  public void testMethodFoundNestedExpression() throws MuleException, Exception {
-    invoker.setMethodName("testMethod3");
-    invoker.setArgumentExpressionsString("#[mel:#[mel:'1']]");
-    invoker.initialise();
-    assertEquals("1 echo", ((PrivilegedEvent) invoker.process(testEvent())).getMessageAsString(muleContext));
-  }
-
-  @Test
-  public void testMethodFoundParseStringWithExpressions() throws MuleException, Exception {
-    invoker.setMethodName("testMethod3");
-    invoker.setArgumentExpressionsString("1-#[mel:#[mel:'2']]-3");
-    invoker.initialise();
-    assertEquals("1-2-3 echo",
-                 ((PrivilegedEvent) invoker.process(testEvent())).getMessageAsString(muleContext));
-  }
-
-  @Test
   public void testMethodFoundParseStringNoExpressions() throws MuleException, Exception {
     invoker.setMethodName("testMethod3");
     invoker.setArgumentExpressionsString("1");
